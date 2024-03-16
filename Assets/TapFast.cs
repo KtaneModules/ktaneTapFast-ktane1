@@ -53,24 +53,17 @@ public class TapFast : MonoBehaviour
         {
             if (wrongNumber == i)//Randomising that one character to a different tap code pair
             {
-                switch (wrongNumber)
-                {
-                    case 2:
-                    case 5:
-                        do toAppend = decoy == 0 ? 60 + UnityEngine.Random.Range(1, 6) : 10 * UnityEngine.Random.Range(1, 6) + 6;
-                        while (toAppend == 10 * (tapCodeString.IndexOf(sn[i]) / 6 + 1) + (tapCodeString.IndexOf(sn[i]) % 6 + 1));
-                        break;
-                    case 3:
-                    case 4:
-                        do toAppend = 10 * UnityEngine.Random.Range(1, 6) + UnityEngine.Random.Range(1, 6);
-                        while (toAppend == 10 * (tapCodeString.IndexOf(sn[i]) / 6 + 1) + (tapCodeString.IndexOf(sn[i]) % 6 + 1));
-                        break;
-                    default:
-                        do toAppend = 10 * UnityEngine.Random.Range(1, 7) + UnityEngine.Random.Range(1, 7);
-                        while (toAppend == 10 * (tapCodeString.IndexOf(sn[i]) / 6 + 1) + (tapCodeString.IndexOf(sn[i]) % 6 + 1));
-                        break;
-                }
-                sb.Append(toAppend);
+                if (decoy == 0)
+                    do
+                    {
+                        decoy = 10 * (tapCodeString.IndexOf(sn[i]) / 6 + 1) + UnityEngine.Random.Range(0, 6);
+                    } while (decoy == 10 * (tapCodeString.IndexOf(sn[i]) / 6 + 1) + (tapCodeString.IndexOf(sn[i]) % 6 + 1));
+                else
+                    do
+                    {
+                        decoy = 10 * UnityEngine.Random.Range(0, 6) + (tapCodeString.IndexOf(sn[i]) % 6 + 1);
+                    } while (decoy == 10 * (tapCodeString.IndexOf(sn[i]) / 6 + 1) + (tapCodeString.IndexOf(sn[i]) % 6 + 1)); sb.Append(decoy);
+                sb.Append(decoy);
             }
             else
             {
@@ -156,7 +149,7 @@ public class TapFast : MonoBehaviour
             yield return null;
             button.GetComponent<KMSelectable>().OnInteract();
         }
-        else if (Regex.IsMatch(parameters[0], @"^\s*press\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*tap\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        else if (Regex.IsMatch(parameters[0], @"^\s*press\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(parameters[0], @"^\s*tap\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
         {
             yield return null;
             if (parameters.Length > 2)
