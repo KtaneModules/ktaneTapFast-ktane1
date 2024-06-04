@@ -20,6 +20,6 @@ MonoBehaviour:
     Mod ID: tapFast
 
     Manual Link: https://ktane.timwi.de/HTML/Tap%20Fast.html'
-  version: 1.0.1
+  version: 1.0.2
   outputFolder: build
   previewImage: {fileID: 2800000, guid: 0cd1261b86ece7648a273f374c05ec96, type: 3}

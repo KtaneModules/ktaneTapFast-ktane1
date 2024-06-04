@@ -56,13 +56,13 @@ public class TapFast : MonoBehaviour
                 if (decoy == 0)
                     do
                     {
-                        decoy = 10 * (tapCodeString.IndexOf(sn[i]) / 6 + 1) + UnityEngine.Random.Range(0, 6);
+                        decoy = 10 * (tapCodeString.IndexOf(sn[i]) / 6 + 1) + UnityEngine.Random.Range(1, 7);
                     } while (decoy == 10 * (tapCodeString.IndexOf(sn[i]) / 6 + 1) + (tapCodeString.IndexOf(sn[i]) % 6 + 1));
                 else
                     do
                     {
-                        decoy = 10 * UnityEngine.Random.Range(0, 6) + (tapCodeString.IndexOf(sn[i]) % 6 + 1);
-                    } while (decoy == 10 * (tapCodeString.IndexOf(sn[i]) / 6 + 1) + (tapCodeString.IndexOf(sn[i]) % 6 + 1)); sb.Append(decoy);
+                        decoy = 10 * UnityEngine.Random.Range(1, 7) + (tapCodeString.IndexOf(sn[i]) % 6 + 1);
+                    } while (decoy == 10 * (tapCodeString.IndexOf(sn[i]) / 6 + 1) + (tapCodeString.IndexOf(sn[i]) % 6 + 1));
                 sb.Append(decoy);
             }
             else
@@ -128,11 +128,6 @@ public class TapFast : MonoBehaviour
         }
         nowPlaying = -1;
         isPlaying = false;
-    }
-
-    void Update() //Runs every frame.
-    {
-
     }
 
     //Twitch plays
